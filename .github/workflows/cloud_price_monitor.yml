@@ -12,6 +12,9 @@ on:
         required: false
         default: 'true'
 
+permissions:
+  contents: write
+
 jobs:
   monitor:
     name: Cloud Price Monitor
