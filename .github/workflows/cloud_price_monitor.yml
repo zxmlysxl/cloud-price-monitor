@@ -38,6 +38,9 @@ jobs:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         run: |
+          echo "Running price monitor..."
+          ls -la
+          ls -la tools/
           python3 tools/cloud_price_monitor_github.py
 
       - name: Commit and push if changed
