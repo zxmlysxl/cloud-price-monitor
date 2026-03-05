@@ -561,24 +561,25 @@ def generate_activity_message(changes):
 
 
 def send_telegram_message(message):
-    """发送 Telegram 消息"""
+    """发送 Telegram 消息（使用 Telegram API）"""
+    if not TELEGRAM_BOT_TOKEN:
+        print("⚠️ 未配置 TELEGRAM_BOT_TOKEN，跳过消息发送")
+        return False
+    
     try:
-        # 使用 openclaw message 工具
-        subprocess.run(
-            [
-                "openclaw",
-                "message",
-                "send",
-                "--target",
-                TELEGRAM_CHAT_ID,
-                "--message",
-                message,
-            ],
-            capture_output=True,
-            text=True,
-        )
+        url = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendMessage"
+        data = {
+            "chat_id": TELEGRAM_CHAT_ID,
+            "text": message,
+            "parse_mode": "Markdown",
+        }
+        response = requests.post(url, json=data, timeout=30)
+        response.raise_for_status()
+        print("✅ Telegram 消息发送成功")
+        return True
     except Exception as e:
-        print(f"发送消息失败：{e}")
+        print(f"❌ 发送消息失败：{e}")
+        return False
 
 
 def main():
