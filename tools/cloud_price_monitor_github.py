@@ -9,6 +9,7 @@
 
 import json
 import hashlib
+import os
 import subprocess
 from datetime import datetime
 from pathlib import Path
@@ -16,13 +17,17 @@ import re
 import requests
 from bs4 import BeautifulSoup
 
-# 配置
-DATA_DIR = Path("/root/.openclaw/workspace/cloud_prices")
+# 配置 - 使用相对于脚本所在仓库的路径
+SCRIPT_DIR = Path(__file__).parent.parent
+DATA_DIR = SCRIPT_DIR / "cloud_prices"
 DATA_DIR.mkdir(exist_ok=True)
 PRICE_FILE = DATA_DIR / "prices.json"
 HISTORY_FILE = DATA_DIR / "history.json"
 ACTIVITY_FILE = DATA_DIR / "activities.json"
-TELEGRAM_CHAT_ID = "1088831643"
+
+# Telegram 配置（从环境变量读取）
+TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN", "")
+TELEGRAM_CHAT_ID = os.getenv("TELEGRAM_CHAT_ID", "1088831643")
 
 # 云厂商配置
 PROVIDERS = {
