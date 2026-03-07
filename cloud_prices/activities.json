@@ -1,7 +1,7 @@
 {
   "activities": {
     "tencent": {
-      "hash": "290001bff9cfe74a497ce3678cd493da",
+      "hash": "78894cfe0e1a6e90452e55973a552f75",
       "url": "https://cloud.tencent.com/act",
       "activities": [
         {
@@ -40,16 +40,16 @@
           "url": "https://cloud.tencent.com/act/pro/teaStarterExhibition?from=29429&from=29430#2"
         }
       ],
-      "last_check": "2026-03-06T12:29:24.274438"
+      "last_check": "2026-03-07T01:15:46.410836"
     },
     "aliyun": {
       "hash": "19865ebfdcf6cdf932de49b00e70b233",
       "url": "https://www.aliyun.com/activity",
       "activities": [],
-      "last_check": "2026-03-06T12:29:28.169275"
+      "last_check": "2026-03-07T01:15:49.311100"
     },
     "huawei": {
-      "hash": "470fad28d001bb770b392d3e74044b1f",
+      "hash": "30ff5c1f79e843bf0982683172ec8bfd",
       "url": "https://activity.huaweicloud.com",
       "activities": [
         {
@@ -61,10 +61,10 @@
           "provider": "huawei"
         }
       ],
-      "last_check": "2026-03-06T12:29:28.431982"
+      "last_check": "2026-03-07T01:15:49.549046"
     },
     "aws": {
-      "hash": "8f5e4e0761ab1a0176e6afb4e83f0d9f",
+      "hash": "4f033fa2268d748ca514ca942b92489f",
       "url": "https://aws.amazon.com/cn/free/",
       "activities": [
         {
@@ -83,8 +83,8 @@
           "url": "https://portal.aws.amazon.com/gp/aws/developer/registration/index.html?&p=free&c=hp2&z=6"
         }
       ],
-      "last_check": "2026-03-06T12:29:28.639257"
+      "last_check": "2026-03-07T01:15:49.756257"
     }
   },
-  "last_check": "2026-03-06T12:29:28.639269"
+  "last_check": "2026-03-07T01:15:49.756272"
 }
