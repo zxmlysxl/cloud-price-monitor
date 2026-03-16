@@ -29,7 +29,7 @@ ACTIVITY_FILE = DATA_DIR / "activities.json"
 TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN", "")
 TELEGRAM_CHAT_ID = os.getenv("TELEGRAM_CHAT_ID", "1088831643")
 
-# 云厂商配置
+# 云厂商配置 - 仅香港地区
 PROVIDERS = {
     "tencent": {
         "name": "腾讯云轻量",
@@ -53,7 +53,31 @@ PROVIDERS = {
         "name": "AWS Lightsail",
         "url": "https://aws.amazon.com/lightsail/pricing/",
         "activity_url": "https://aws.amazon.com/cn/free/",
-        "region": "Asia Pacific (Hong Kong)",
+        "region": "Hong Kong",
+    },
+    "vultr": {
+        "name": "Vultr",
+        "url": "https://www.vultr.com/products/cloud-compute/",
+        "activity_url": "https://www.vultr.com/promo/",
+        "region": "Hong Kong",
+    },
+    "pccw": {
+        "name": "PCCW Global",
+        "url": "https://www.pccwglobal.com/",
+        "activity_url": "https://www.pccwglobal.com/",
+        "region": "Hong Kong",
+    },
+    "bandwagon": {
+        "name": "BandwagonHost (搬瓦工)",
+        "url": "https://bwh81.net/",
+        "activity_url": "https://bwh81.net/",
+        "region": "Hong Kong CN2 GIA",
+    },
+    "dmit": {
+        "name": "DMIT",
+        "url": "https://www.dmit.io/",
+        "activity_url": "https://www.dmit.io/",
+        "region": "Hong Kong",
     },
 }
 
@@ -325,13 +349,509 @@ def fetch_aws_prices():
     ]
 
 
+def fetch_google_prices():
+    """
+    Google Cloud 价格（美元转换）
+    """
+    usd_to_cny = 7.2
+    return [
+        {
+            "provider": "google",
+            "provider_name": "Google Cloud",
+            "config": "1 核 2G",
+            "cpu": 1,
+            "memory": "2G",
+            "storage": "40GB SSD",
+            "bandwidth": "按量",
+            "traffic": "按量",
+            "price_monthly": int(15 * usd_to_cny),
+            "price_yearly": int(15 * usd_to_cny * 12),
+            "currency": "CNY",
+            "region": "asia-east1",
+            "url": "https://cloud.google.com/compute",
+        },
+        {
+            "provider": "google",
+            "provider_name": "Google Cloud",
+            "config": "2 核 4G",
+            "cpu": 2,
+            "memory": "4G",
+            "storage": "60GB SSD",
+            "bandwidth": "按量",
+            "traffic": "按量",
+            "price_monthly": int(35 * usd_to_cny),
+            "price_yearly": int(35 * usd_to_cny * 12),
+            "currency": "CNY",
+            "region": "asia-east1",
+            "url": "https://cloud.google.com/compute",
+        },
+        {
+            "provider": "google",
+            "provider_name": "Google Cloud",
+            "config": "4 核 8G",
+            "cpu": 4,
+            "memory": "8G",
+            "storage": "100GB SSD",
+            "bandwidth": "按量",
+            "traffic": "按量",
+            "price_monthly": int(70 * usd_to_cny),
+            "price_yearly": int(70 * usd_to_cny * 12),
+            "currency": "CNY",
+            "region": "asia-east1",
+            "url": "https://cloud.google.com/compute",
+        },
+    ]
+
+
+def fetch_azure_prices():
+    """
+    Microsoft Azure 价格（美元转换）
+    """
+    usd_to_cny = 7.2
+    return [
+        {
+            "provider": "azure",
+            "provider_name": "Microsoft Azure",
+            "config": "1 核 2G",
+            "cpu": 1,
+            "memory": "2G",
+            "storage": "32GB SSD",
+            "bandwidth": "按量",
+            "traffic": "按量",
+            "price_monthly": int(12 * usd_to_cny),
+            "price_yearly": int(12 * usd_to_cny * 12),
+            "currency": "CNY",
+            "region": "East Asia",
+            "url": "https://azure.microsoft.com/zh-cn/pricing/details/virtual-machines/",
+        },
+        {
+            "provider": "azure",
+            "provider_name": "Microsoft Azure",
+            "config": "2 核 4G",
+            "cpu": 2,
+            "memory": "4G",
+            "storage": "64GB SSD",
+            "bandwidth": "按量",
+            "traffic": "按量",
+            "price_monthly": int(30 * usd_to_cny),
+            "price_yearly": int(30 * usd_to_cny * 12),
+            "currency": "CNY",
+            "region": "East Asia",
+            "url": "https://azure.microsoft.com/zh-cn/pricing/details/virtual-machines/",
+        },
+        {
+            "provider": "azure",
+            "provider_name": "Microsoft Azure",
+            "config": "4 核 8G",
+            "cpu": 4,
+            "memory": "8G",
+            "storage": "128GB SSD",
+            "bandwidth": "按量",
+            "traffic": "按量",
+            "price_monthly": int(60 * usd_to_cny),
+            "price_yearly": int(60 * usd_to_cny * 12),
+            "currency": "CNY",
+            "region": "East Asia",
+            "url": "https://azure.microsoft.com/zh-cn/pricing/details/virtual-machines/",
+        },
+    ]
+
+
+def fetch_oracle_prices():
+    """
+    Oracle Cloud 价格（含免费层）
+    """
+    usd_to_cny = 7.2
+    return [
+        {
+            "provider": "oracle",
+            "provider_name": "Oracle Cloud",
+            "config": "免费层 1G",
+            "cpu": 1,
+            "memory": "1G",
+            "storage": "50GB",
+            "bandwidth": "按量",
+            "traffic": "按量",
+            "price_monthly": 0,
+            "price_yearly": 0,
+            "currency": "CNY",
+            "region": "Asia Pacific",
+            "url": "https://www.oracle.com/cloud/free/",
+            "note": "永久免费层",
+        },
+        {
+            "provider": "oracle",
+            "provider_name": "Oracle Cloud",
+            "config": "2 核 4G",
+            "cpu": 2,
+            "memory": "4G",
+            "storage": "60GB SSD",
+            "bandwidth": "按量",
+            "traffic": "按量",
+            "price_monthly": int(25 * usd_to_cny),
+            "price_yearly": int(25 * usd_to_cny * 12),
+            "currency": "CNY",
+            "region": "Asia Pacific",
+            "url": "https://www.oracle.com/cloud/compute/",
+        },
+        {
+            "provider": "oracle",
+            "provider_name": "Oracle Cloud",
+            "config": "4 核 8G",
+            "cpu": 4,
+            "memory": "8G",
+            "storage": "100GB SSD",
+            "bandwidth": "按量",
+            "traffic": "按量",
+            "price_monthly": int(50 * usd_to_cny),
+            "price_yearly": int(50 * usd_to_cny * 12),
+            "currency": "CNY",
+            "region": "Asia Pacific",
+            "url": "https://www.oracle.com/cloud/compute/",
+        },
+    ]
+
+
+def fetch_digitalocean_prices():
+    """
+    DigitalOcean Droplets 价格（美元转换）
+    """
+    usd_to_cny = 7.2
+    return [
+        {
+            "provider": "digitalocean",
+            "provider_name": "DigitalOcean",
+            "config": "1 核 1G",
+            "cpu": 1,
+            "memory": "1G",
+            "storage": "25GB SSD",
+            "bandwidth": "1TB/月",
+            "traffic": "1000GB/月",
+            "price_monthly": int(6 * usd_to_cny),
+            "price_yearly": int(6 * usd_to_cny * 12),
+            "currency": "CNY",
+            "region": "Singapore",
+            "url": "https://www.digitalocean.com/pricing",
+        },
+        {
+            "provider": "digitalocean",
+            "provider_name": "DigitalOcean",
+            "config": "1 核 2G",
+            "cpu": 1,
+            "memory": "2G",
+            "storage": "50GB SSD",
+            "bandwidth": "2TB/月",
+            "traffic": "2000GB/月",
+            "price_monthly": int(12 * usd_to_cny),
+            "price_yearly": int(12 * usd_to_cny * 12),
+            "currency": "CNY",
+            "region": "Singapore",
+            "url": "https://www.digitalocean.com/pricing",
+        },
+        {
+            "provider": "digitalocean",
+            "provider_name": "DigitalOcean",
+            "config": "2 核 4G",
+            "cpu": 2,
+            "memory": "4G",
+            "storage": "80GB SSD",
+            "bandwidth": "4TB/月",
+            "traffic": "4000GB/月",
+            "price_monthly": int(24 * usd_to_cny),
+            "price_yearly": int(24 * usd_to_cny * 12),
+            "currency": "CNY",
+            "region": "Singapore",
+            "url": "https://www.digitalocean.com/pricing",
+        },
+        {
+            "provider": "digitalocean",
+            "provider_name": "DigitalOcean",
+            "config": "4 核 8G",
+            "cpu": 4,
+            "memory": "8G",
+            "storage": "160GB SSD",
+            "bandwidth": "5TB/月",
+            "traffic": "5000GB/月",
+            "price_monthly": int(48 * usd_to_cny),
+            "price_yearly": int(48 * usd_to_cny * 12),
+            "currency": "CNY",
+            "region": "Singapore",
+            "url": "https://www.digitalocean.com/pricing",
+        },
+    ]
+
+
+def fetch_vultr_prices():
+    """
+    Vultr Cloud Compute 价格（美元转换）
+    """
+    usd_to_cny = 7.2
+    return [
+        {
+            "provider": "vultr",
+            "provider_name": "Vultr",
+            "config": "1 核 2G",
+            "cpu": 1,
+            "memory": "2G",
+            "storage": "55GB SSD",
+            "bandwidth": "2TB/月",
+            "traffic": "2000GB/月",
+            "price_monthly": int(12 * usd_to_cny),
+            "price_yearly": int(12 * usd_to_cny * 12),
+            "currency": "CNY",
+            "region": "Hong Kong",
+            "url": "https://www.vultr.com/products/cloud-compute/",
+        },
+        {
+            "provider": "vultr",
+            "provider_name": "Vultr",
+            "config": "2 核 4G",
+            "cpu": 2,
+            "memory": "4G",
+            "storage": "80GB SSD",
+            "bandwidth": "3TB/月",
+            "traffic": "3000GB/月",
+            "price_monthly": int(24 * usd_to_cny),
+            "price_yearly": int(24 * usd_to_cny * 12),
+            "currency": "CNY",
+            "region": "Hong Kong",
+            "url": "https://www.vultr.com/products/cloud-compute/",
+        },
+        {
+            "provider": "vultr",
+            "provider_name": "Vultr",
+            "config": "4 核 8G",
+            "cpu": 4,
+            "memory": "8G",
+            "storage": "160GB SSD",
+            "bandwidth": "4TB/月",
+            "traffic": "4000GB/月",
+            "price_monthly": int(48 * usd_to_cny),
+            "price_yearly": int(48 * usd_to_cny * 12),
+            "currency": "CNY",
+            "region": "Hong Kong",
+            "url": "https://www.vultr.com/products/cloud-compute/",
+        },
+    ]
+
+
+def fetch_linode_prices():
+    """
+    Linode (Akamai) 价格（美元转换）
+    """
+    usd_to_cny = 7.2
+    return [
+        {
+            "provider": "linode",
+            "provider_name": "Linode (Akamai)",
+            "config": "1 核 2G",
+            "cpu": 1,
+            "memory": "2G",
+            "storage": "50GB SSD",
+            "bandwidth": "2TB/月",
+            "traffic": "2000GB/月",
+            "price_monthly": int(10 * usd_to_cny),
+            "price_yearly": int(10 * usd_to_cny * 12),
+            "currency": "CNY",
+            "region": "Singapore",
+            "url": "https://www.linode.com/pricing/",
+        },
+        {
+            "provider": "linode",
+            "provider_name": "Linode (Akamai)",
+            "config": "2 核 4G",
+            "cpu": 2,
+            "memory": "4G",
+            "storage": "80GB SSD",
+            "bandwidth": "4TB/月",
+            "traffic": "4000GB/月",
+            "price_monthly": int(20 * usd_to_cny),
+            "price_yearly": int(20 * usd_to_cny * 12),
+            "currency": "CNY",
+            "region": "Singapore",
+            "url": "https://www.linode.com/pricing/",
+        },
+        {
+            "provider": "linode",
+            "provider_name": "Linode (Akamai)",
+            "config": "4 核 8G",
+            "cpu": 4,
+            "memory": "8G",
+            "storage": "160GB SSD",
+            "bandwidth": "5TB/月",
+            "traffic": "5000GB/月",
+            "price_monthly": int(40 * usd_to_cny),
+            "price_yearly": int(40 * usd_to_cny * 12),
+            "currency": "CNY",
+            "region": "Singapore",
+            "url": "https://www.linode.com/pricing/",
+        },
+    ]
+
+
+def fetch_pccw_prices():
+    """
+    PCCW Global 价格（预设参考价）
+    """
+    return [
+        {
+            "provider": "pccw",
+            "provider_name": "PCCW Global",
+            "config": "2 核 4G",
+            "cpu": 2,
+            "memory": "4G",
+            "storage": "80GB SSD",
+            "bandwidth": "10Mbps",
+            "traffic": "不限",
+            "price_monthly": 180,
+            "price_yearly": 1800,
+            "currency": "CNY",
+            "region": "Hong Kong",
+            "url": "https://www.pccwglobal.com/",
+        },
+        {
+            "provider": "pccw",
+            "provider_name": "PCCW Global",
+            "config": "4 核 8G",
+            "cpu": 4,
+            "memory": "8G",
+            "storage": "120GB SSD",
+            "bandwidth": "20Mbps",
+            "traffic": "不限",
+            "price_monthly": 360,
+            "price_yearly": 3600,
+            "currency": "CNY",
+            "region": "Hong Kong",
+            "url": "https://www.pccwglobal.com/",
+        },
+    ]
+
+
+def fetch_bandwagon_prices():
+    """
+    BandwagonHost (搬瓦工) CN2 GIA 价格
+    """
+    usd_to_cny = 7.2
+    return [
+        {
+            "provider": "bandwagon",
+            "provider_name": "BandwagonHost (搬瓦工)",
+            "config": "1 核 1G",
+            "cpu": 1,
+            "memory": "1G",
+            "storage": "20GB SSD",
+            "bandwidth": "1Gbps",
+            "traffic": "1000GB/月",
+            "price_monthly": int(5 * usd_to_cny),
+            "price_yearly": int(5 * usd_to_cny * 12),
+            "currency": "CNY",
+            "region": "Hong Kong CN2 GIA",
+            "url": "https://bwh81.net/",
+            "note": "CN2 GIA 线路",
+        },
+        {
+            "provider": "bandwagon",
+            "provider_name": "BandwagonHost (搬瓦工)",
+            "config": "2 核 2G",
+            "cpu": 2,
+            "memory": "2G",
+            "storage": "40GB SSD",
+            "bandwidth": "1Gbps",
+            "traffic": "2000GB/月",
+            "price_monthly": int(10 * usd_to_cny),
+            "price_yearly": int(10 * usd_to_cny * 12),
+            "currency": "CNY",
+            "region": "Hong Kong CN2 GIA",
+            "url": "https://bwh81.net/",
+            "note": "CN2 GIA 线路",
+        },
+        {
+            "provider": "bandwagon",
+            "provider_name": "BandwagonHost (搬瓦工)",
+            "config": "4 核 4G",
+            "cpu": 4,
+            "memory": "4G",
+            "storage": "80GB SSD",
+            "bandwidth": "2.5Gbps",
+            "traffic": "3000GB/月",
+            "price_monthly": int(20 * usd_to_cny),
+            "price_yearly": int(20 * usd_to_cny * 12),
+            "currency": "CNY",
+            "region": "Hong Kong CN2 GIA",
+            "url": "https://bwh81.net/",
+            "note": "CN2 GIA 线路",
+        },
+    ]
+
+
+def fetch_dmit_prices():
+    """
+    DMIT 价格（预设参考价）
+    """
+    usd_to_cny = 7.2
+    return [
+        {
+            "provider": "dmit",
+            "provider_name": "DMIT",
+            "config": "1 核 2G",
+            "cpu": 1,
+            "memory": "2G",
+            "storage": "30GB SSD",
+            "bandwidth": "100Mbps",
+            "traffic": "800GB/月",
+            "price_monthly": int(8 * usd_to_cny),
+            "price_yearly": int(8 * usd_to_cny * 12),
+            "currency": "CNY",
+            "region": "Hong Kong",
+            "url": "https://www.dmit.io/",
+            "note": "CN2/9929 线路可选",
+        },
+        {
+            "provider": "dmit",
+            "provider_name": "DMIT",
+            "config": "2 核 4G",
+            "cpu": 2,
+            "memory": "4G",
+            "storage": "60GB SSD",
+            "bandwidth": "200Mbps",
+            "traffic": "1500GB/月",
+            "price_monthly": int(16 * usd_to_cny),
+            "price_yearly": int(16 * usd_to_cny * 12),
+            "currency": "CNY",
+            "region": "Hong Kong",
+            "url": "https://www.dmit.io/",
+            "note": "CN2/9929 线路可选",
+        },
+        {
+            "provider": "dmit",
+            "provider_name": "DMIT",
+            "config": "4 核 8G",
+            "cpu": 4,
+            "memory": "8G",
+            "storage": "120GB SSD",
+            "bandwidth": "400Mbps",
+            "traffic": "3000GB/月",
+            "price_monthly": int(32 * usd_to_cny),
+            "price_yearly": int(32 * usd_to_cny * 12),
+            "currency": "CNY",
+            "region": "Hong Kong",
+            "url": "https://www.dmit.io/",
+            "note": "CN2/9929 线路可选",
+        },
+    ]
+
+
 def fetch_all_prices():
-    """获取所有厂商价格"""
+    """获取所有厂商价格 - 仅香港地区"""
     all_prices = []
     all_prices.extend(fetch_tencent_prices())
     all_prices.extend(fetch_aliyun_prices())
     all_prices.extend(fetch_huawei_prices())
     all_prices.extend(fetch_aws_prices())
+    all_prices.extend(fetch_vultr_prices())
+    all_prices.extend(fetch_pccw_prices())
+    all_prices.extend(fetch_bandwagon_prices())
+    all_prices.extend(fetch_dmit_prices())
     return all_prices
 
 
@@ -432,17 +952,40 @@ def generate_change_message(changes):
 
 
 def fetch_activity_page(url):
-    """抓取活动页面内容"""
-    try:
-        headers = {
-            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-        }
-        response = requests.get(url, headers=headers, timeout=30)
-        response.raise_for_status()
-        return response.text
-    except Exception as e:
-        print(f"抓取活动页面失败 {url}: {e}")
-        return None
+    """抓取活动页面内容（带重试机制）"""
+    headers = {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8",
+        "Accept-Language": "zh-CN,zh;q=0.9,en;q=0.8",
+        "Accept-Encoding": "gzip, deflate, br",
+        "Connection": "keep-alive",
+        "Upgrade-Insecure-Requests": "1",
+    }
+    
+    max_retries = 3
+    for attempt in range(max_retries):
+        try:
+            response = requests.get(url, headers=headers, timeout=30, allow_redirects=True)
+            response.raise_for_status()
+            return response.text
+        except requests.exceptions.Timeout:
+            print(f"  ⚠️ 请求超时 ({attempt+1}/{max_retries}): {url}")
+            if attempt < max_retries - 1:
+                import time
+                time.sleep(2)
+        except requests.exceptions.SSLError as e:
+            print(f"  ⚠️ SSL 错误 ({attempt+1}/{max_retries}): {url} - {e}")
+            if attempt < max_retries - 1:
+                import time
+                time.sleep(2)
+        except requests.exceptions.RequestException as e:
+            print(f"  ⚠️ 请求失败 ({attempt+1}/{max_retries}): {url} - {e}")
+            if attempt < max_retries - 1:
+                import time
+                time.sleep(2)
+    
+    print(f"  ❌ 抓取失败（已重试 {max_retries} 次）: {url}")
+    return None
 
 
 def extract_activity_info(html, provider):
@@ -494,19 +1037,25 @@ def extract_activity_info(html, provider):
 
 
 def check_activity_changes():
-    """检查活动页面变化"""
+    """检查活动页面变化（完整显示所有厂商状态）"""
     old_data = load_activities()
     old_activities = old_data.get("activities", {})
     
     new_activities = {}
     changes = []
+    check_results = []  # 记录所有厂商的检查状态
+    
+    print(f"\n{'='*60}")
+    print(f"📊 开始检查 {len(PROVIDERS)} 个云厂商活动页面...")
+    print(f"{'='*60}")
     
     for provider, config in PROVIDERS.items():
         activity_url = config.get("activity_url")
         if not activity_url:
+            check_results.append(f"  ⚪ {config['name']}: 跳过（无活动 URL）")
             continue
         
-        print(f"检查 {config['name']} 活动页面...")
+        print(f"\n🔍 检查 {config['name']}...")
         html = fetch_activity_page(activity_url)
         
         if html:
@@ -532,9 +1081,21 @@ def check_activity_changes():
                     "type": "updated",
                     "activities": activity_list[:3],  # 只显示前 3 个
                 })
-                print(f"  ⚠️ {config['name']} 活动页面有更新！")
+                status = f"  ⚠️ {config['name']}: 有更新！"
+                if activity_list:
+                    status += f"\n     └─ {activity_list[0]['title'][:50]}"
+                check_results.append(status)
             else:
-                print(f"  ✅ {config['name']} 活动页面无变化")
+                check_results.append(f"  ✅ {config['name']}: 无变化")
+        else:
+            check_results.append(f"  ❌ {config['name']}: 抓取失败")
+    
+    # 打印完整检查结果
+    print(f"\n{'='*60}")
+    print("📋 检查结果汇总:")
+    print(f"{'='*60}")
+    for result in check_results:
+        print(result)
     
     # 保存新数据
     save_activities({
@@ -542,30 +1103,70 @@ def check_activity_changes():
         "last_check": datetime.now().isoformat(),
     })
     
-    return changes
+    return changes, check_results
 
 
-def generate_activity_message(changes):
+def generate_activity_message(changes, check_results=None):
     """生成活动变动通知"""
-    if not changes:
-        return ""
+    lines = ["\n\n🎉 **活动页面监控报告**\n"]
     
-    lines = ["\n\n🎉 **活动页面更新提醒**\n"]
+    if changes:
+        lines.append("**📢 更新提醒:**\n")
+        for c in changes:
+            lines.append(f"\n**{c['provider']}**: {c['url']}")
+            for act in c["activities"]:
+                lines.append(f"  • {act['title']}")
+    else:
+        lines.append("本次活动页面检查无更新。\n")
     
-    for c in changes:
-        lines.append(f"\n**{c['provider']}**: {c['url']}")
-        for act in c["activities"]:
-            lines.append(f"  • {act['title']}")
+    # 添加完整检查状态
+    if check_results:
+        lines.append("\n**📋 完整检查状态:**\n")
+        for result in check_results:
+            lines.append(result)
     
     return "\n".join(lines)
 
 
-def send_telegram_message(message):
-    """发送 Telegram 消息（使用 Telegram API）"""
+def send_telegram_message(message, split_long=False):
+    """发送 Telegram 消息（支持分段发送长消息）"""
     if not TELEGRAM_BOT_TOKEN:
         print("⚠️ 未配置 TELEGRAM_BOT_TOKEN，跳过消息发送")
         return False
     
+    # Telegram 消息长度限制：4096 字符
+    MAX_LENGTH = 4000  # 留一些余量
+    
+    if split_long and len(message) > MAX_LENGTH:
+        # 分段发送
+        parts = []
+        current_part = ""
+        for line in message.split('\n'):
+            if len(current_part) + len(line) + 1 > MAX_LENGTH:
+                if current_part:
+                    parts.append(current_part)
+                current_part = line
+            else:
+                current_part = current_part + '\n' + line if current_part else line
+        if current_part:
+            parts.append(current_part)
+        
+        print(f"📤 消息过长 ({len(message)} 字符)，分段发送 {len(parts)} 条...")
+        success_count = 0
+        for i, part in enumerate(parts):
+            header = f"**({i+1}/{len(parts)})**\n" if len(parts) > 1 else ""
+            if send_single_message(header + part):
+                success_count += 1
+            import time
+            time.sleep(0.5)  # 避免频率限制
+        print(f"✅ 成功发送 {success_count}/{len(parts)} 条消息")
+        return success_count > 0
+    else:
+        return send_single_message(message)
+
+
+def send_single_message(message):
+    """发送单条 Telegram 消息"""
     try:
         url = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendMessage"
         data = {
@@ -610,7 +1211,7 @@ def main():
     
     # === 活动页面监控 ===
     print(f"[{datetime.now()}] 检查活动页面...")
-    activity_changes = check_activity_changes()
+    activity_changes, check_results = check_activity_changes()
     
     # === 生成并发送消息 ===
     table_msg = generate_price_table(new_prices)
@@ -623,17 +1224,25 @@ def main():
             price_msg = generate_change_message(price_changes)
             msgs.append(price_msg)
         
-        if activity_changes:
-            activity_msg = generate_activity_message(activity_changes)
+        if activity_changes or check_results:
+            activity_msg = generate_activity_message(activity_changes, check_results)
             msgs.append(activity_msg)
         
         full_msg = "\n\n".join(msgs) + f"\n\n{table_msg}"
-        send_telegram_message(full_msg)
+        send_telegram_message(full_msg, split_long=True)
         print(f"发现 {len(price_changes)} 处价格变动，{len(activity_changes)} 个活动页面更新，已发送通知")
     else:
-        # 无变化，发送定期检查报告
-        report_msg = f"📋 **定时价格检查**\n\n{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n\n本次检查无价格变动。\n\n{table_msg}"
-        send_telegram_message(report_msg)
+        # 无变化，发送定期检查报告（包含完整检查状态）
+        report_lines = [
+            f"📋 **定时价格检查**",
+            f"\n{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}",
+            "\n本次检查无价格变动。",
+        ]
+        if check_results:
+            report_lines.append("\n**📋 活动页面检查状态:**\n")
+            report_lines.extend(check_results)
+        report_msg = "\n".join(report_lines) + f"\n\n{table_msg}"
+        send_telegram_message(report_msg, split_long=True)
         print("无价格变动，已发送定期报告")
     
     print(f"[{datetime.now()}] 价格监控完成")
