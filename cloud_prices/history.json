@@ -228,6 +228,79 @@
       "hash": "b9e7042f68e81676012570b581e7ade8",
       "changes_count": 0,
       "changes": []
+    },
+    {
+      "timestamp": "2026-03-16T06:13:25.279033",
+      "hash": "5915e3d7357229395adf894514de0631",
+      "changes_count": 11,
+      "changes": [
+        {
+          "type": "new",
+          "provider": "Vultr",
+          "config": "1 核 2G",
+          "new_price": 86
+        },
+        {
+          "type": "new",
+          "provider": "Vultr",
+          "config": "2 核 4G",
+          "new_price": 172
+        },
+        {
+          "type": "new",
+          "provider": "Vultr",
+          "config": "4 核 8G",
+          "new_price": 345
+        },
+        {
+          "type": "new",
+          "provider": "PCCW Global",
+          "config": "2 核 4G",
+          "new_price": 180
+        },
+        {
+          "type": "new",
+          "provider": "PCCW Global",
+          "config": "4 核 8G",
+          "new_price": 360
+        },
+        {
+          "type": "new",
+          "provider": "BandwagonHost (搬瓦工)",
+          "config": "1 核 1G",
+          "new_price": 36
+        },
+        {
+          "type": "new",
+          "provider": "BandwagonHost (搬瓦工)",
+          "config": "2 核 2G",
+          "new_price": 72
+        },
+        {
+          "type": "new",
+          "provider": "BandwagonHost (搬瓦工)",
+          "config": "4 核 4G",
+          "new_price": 144
+        },
+        {
+          "type": "new",
+          "provider": "DMIT",
+          "config": "1 核 2G",
+          "new_price": 57
+        },
+        {
+          "type": "new",
+          "provider": "DMIT",
+          "config": "2 核 4G",
+          "new_price": 115
+        },
+        {
+          "type": "new",
+          "provider": "DMIT",
+          "config": "4 核 8G",
+          "new_price": 230
+        }
+      ]
     }
   ]
 }
