@@ -81,8 +81,11 @@ PROVIDERS = {
     },
 }
 
-# 目标配置
-TARGET_CONFIGS = ["4G", "8G"]
+# 目标配置 - 只关注 4G 及以上内存
+TARGET_CONFIGS = ["4G", "8G", "16G", "32G"]
+
+# 目标地区 - 优先香港
+TARGET_REGIONS = ["香港", "Hong Kong", "HongKong"]
 
 
 def load_prices():
@@ -887,10 +890,19 @@ def compare_prices(old_prices, new_prices):
 
 
 def generate_price_table(prices):
-    """生成价格对比表（Markdown 格式）"""
+    """生成价格对比表（Markdown 格式）- 只显示 4G 及以上内存，优先香港"""
+    # 过滤：只保留 4G 及以上内存
+    filtered_prices = []
+    for p in prices:
+        mem = p["memory"]
+        # 提取内存数字
+        mem_num = int(mem.replace("G", "").replace("g", "")) if mem else 0
+        if mem_num >= 4:
+            filtered_prices.append(p)
+    
     # 按配置分组
     configs = {}
-    for p in prices:
+    for p in filtered_prices:
         mem = p["memory"]
         if mem not in configs:
             configs[mem] = []
@@ -899,28 +911,42 @@ def generate_price_table(prices):
     lines = []
     lines.append("## 🌐 云服务器价格对比（香港地区）")
     lines.append(f"_更新时间：{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}_\n")
+    lines.append("**注：** 只显示 4G 及以上内存配置，新加坡/香港地区优先\n")
     
     for mem in sorted(configs.keys()):
         lines.append(f"### 💾 {mem} 内存配置\n")
-        lines.append("| 厂商 | 配置 | CPU | 存储 | 带宽 | 流量 | 月付 | 年付 |")
-        lines.append("|------|------|-----|------|------|------|------|------|")
+        lines.append("| 厂商 | 配置 | CPU | 存储 | 带宽 | 流量 | 月付 | 年付 | 地区 |")
+        lines.append("|------|------|-----|------|------|------|------|------|------|")
         
         for p in sorted(configs[mem], key=lambda x: x["price_monthly"]):
+            region = p.get('region', '')
+            region_flag = "🇭🇰" if "香港" in region or "Hong" in region else "🇸🇬" if "Singapore" in region else ""
             lines.append(
                 f"| {p['provider_name']} | {p['config']} | {p['cpu']}核 | "
                 f"{p['storage']} | {p['bandwidth']} | {p['traffic']} | "
-                f"¥{p['price_monthly']} | ¥{p['price_yearly']} |"
+                f"¥{p['price_monthly']} | ¥{p['price_yearly']} | {region_flag} {region} |"
             )
         lines.append("")
     
-    # 最便宜推荐
+    # 最便宜推荐（分香港和新加坡）
     lines.append("### 💰 性价比推荐\n")
     for mem in sorted(configs.keys()):
-        cheapest = min(configs[mem], key=lambda x: x["price_monthly"])
-        lines.append(
-            f"- **{mem}**: {cheapest['provider_name']} {cheapest['config']} "
-            f"¥{cheapest['price_monthly']}/月"
-        )
+        # 香港最便宜
+        hk_prices = [p for p in configs[mem] if "香港" in p.get('region', '') or "Hong" in p.get('region', '')]
+        sg_prices = [p for p in configs[mem] if "Singapore" in p.get('region', '')]
+        
+        if hk_prices:
+            cheapest_hk = min(hk_prices, key=lambda x: x["price_monthly"])
+            lines.append(
+                f"- **{mem} 香港**: {cheapest_hk['provider_name']} {cheapest_hk['config']} "
+                f"¥{cheapest_hk['price_monthly']}/月 🇭🇰"
+            )
+        if sg_prices:
+            cheapest_sg = min(sg_prices, key=lambda x: x["price_monthly"])
+            lines.append(
+                f"- **{mem} 新加坡**: {cheapest_sg['provider_name']} {cheapest_sg['config']} "
+                f"¥{cheapest_sg['price_monthly']}/月 🇸🇬"
+            )
     
     return "\n".join(lines)
 
