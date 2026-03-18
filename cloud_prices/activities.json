@@ -1,7 +1,7 @@
 {
   "activities": {
     "tencent": {
-      "hash": "90d52be3472a9bcb2045edf4b9ed7b97",
+      "hash": "87b5a4a9f170a5895da737ef16e0297d",
       "url": "https://cloud.tencent.com/act",
       "activities": [
         {
@@ -40,16 +40,16 @@
           "url": "https://cloud.tencent.com/act/pro/teaStarterExhibition?from=29429&from=29430#2"
         }
       ],
-      "last_check": "2026-03-17T12:41:25.175050"
+      "last_check": "2026-03-18T01:25:41.290537"
     },
     "aliyun": {
-      "hash": "6d51ea22be91e734e704d16c5cfcff62",
+      "hash": "9165703d7b0113a17d44ab69283caae3",
       "url": "https://www.aliyun.com/activity",
       "activities": [],
-      "last_check": "2026-03-17T12:41:27.536166"
+      "last_check": "2026-03-18T01:25:44.242354"
     },
     "huawei": {
-      "hash": "ce3336884f55f39964d76a6b2a6df5a3",
+      "hash": "35e28ff8f459412091a0497f5d27dc00",
       "url": "https://activity.huaweicloud.com",
       "activities": [
         {
@@ -61,10 +61,10 @@
           "provider": "huawei"
         }
       ],
-      "last_check": "2026-03-17T12:41:27.880077"
+      "last_check": "2026-03-18T01:25:44.558454"
     },
     "aws": {
-      "hash": "add7fb4c9cac0433fa84a9911e4ee82f",
+      "hash": "4c48274dc4adecfb4eab8d7849de5b44",
       "url": "https://aws.amazon.com/cn/free/",
       "activities": [
         {
@@ -83,20 +83,20 @@
           "url": "https://portal.aws.amazon.com/gp/aws/developer/registration/index.html?&p=free&c=hp2&z=6"
         }
       ],
-      "last_check": "2026-03-17T12:41:28.144986"
+      "last_check": "2026-03-18T01:25:44.689006"
     },
     "pccw": {
-      "hash": "84e0f83448ea7676d446921a1575220d",
+      "hash": "3b069202d24126a72e1ad001d164c854",
       "url": "https://www.pccwglobal.com/",
       "activities": [],
-      "last_check": "2026-03-17T12:41:35.364292"
+      "last_check": "2026-03-18T01:25:51.460753"
     },
     "bandwagon": {
       "hash": "390d636bdff8c3fa3a02bcc1d52affb2",
       "url": "https://bwh81.net/",
       "activities": [],
-      "last_check": "2026-03-17T12:41:35.608474"
+      "last_check": "2026-03-18T01:25:51.909530"
     }
   },
-  "last_check": "2026-03-17T12:41:40.064612"
+  "last_check": "2026-03-18T01:25:56.155024"
 }
