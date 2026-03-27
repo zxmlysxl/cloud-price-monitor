@@ -1,7 +1,7 @@
 {
   "activities": {
     "tencent": {
-      "hash": "eaaa662fff59794ecfc956b9db989d3b",
+      "hash": "7117694722e098f4e244d5b6abecc172",
       "url": "https://cloud.tencent.com/act",
       "activities": [
         {
@@ -40,13 +40,13 @@
           "url": "https://cloud.tencent.com/act/pro/teaStarterExhibition?from=29429&from=29430#2"
         }
       ],
-      "last_check": "2026-03-26T12:45:38.355668"
+      "last_check": "2026-03-27T01:29:41.810734"
     },
     "aliyun": {
-      "hash": "354d4c41864070fa7a6b1625bf87e6a1",
+      "hash": "106d4f8b3e6de1fd0f694b3442e4b519",
       "url": "https://www.aliyun.com/activity",
       "activities": [],
-      "last_check": "2026-03-26T12:45:40.768730"
+      "last_check": "2026-03-27T01:29:44.123098"
     },
     "huawei": {
       "hash": "e832598d3494b002a739bc629f8a2534",
@@ -61,17 +61,12 @@
           "provider": "huawei"
         }
       ],
-      "last_check": "2026-03-26T12:45:41.091732"
+      "last_check": "2026-03-27T01:29:44.591370"
     },
     "aws": {
-      "hash": "7595951bf5c7c4131061930560856d72",
+      "hash": "66e35d8db3d9cca317d41ce7260582e8",
       "url": "https://aws.amazon.com/cn/free/",
       "activities": [
-        {
-          "title": "您是否在 2025 年 7 月 16 日之前创建了 AWS 账户？ 访问旧版免费套餐",
-          "provider": "aws",
-          "url": "/cn/free/legacy/?p=free&c=hp2&z=1"
-        },
         {
           "title": "创建免费账户",
           "provider": "aws",
@@ -83,20 +78,20 @@
           "url": "https://portal.aws.amazon.com/gp/aws/developer/registration/index.html?&p=free&c=hp2&z=6"
         }
       ],
-      "last_check": "2026-03-26T12:45:41.363182"
+      "last_check": "2026-03-27T01:29:44.799951"
     },
     "pccw": {
-      "hash": "a3b297aa29e49f687557e091c98a12cc",
+      "hash": "30e4884be3c4183bba98adfbbfa6b81c",
       "url": "https://www.pccwglobal.com/",
       "activities": [],
-      "last_check": "2026-03-26T12:45:48.733341"
+      "last_check": "2026-03-27T01:29:52.609438"
     },
     "bandwagon": {
       "hash": "390d636bdff8c3fa3a02bcc1d52affb2",
       "url": "https://bwh81.net/",
       "activities": [],
-      "last_check": "2026-03-26T12:45:48.967582"
+      "last_check": "2026-03-27T01:29:52.780368"
     }
   },
-  "last_check": "2026-03-26T12:45:53.298919"
+  "last_check": "2026-03-27T01:29:57.162924"
 }
