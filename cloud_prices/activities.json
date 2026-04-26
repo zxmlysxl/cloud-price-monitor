@@ -1,7 +1,7 @@
 {
   "activities": {
     "tencent": {
-      "hash": "400515f8770556b99fb725280c418d26",
+      "hash": "4d4bf9589d5e608ac5bec707cdfff4ce",
       "url": "https://cloud.tencent.com/act",
       "activities": [
         {
@@ -40,13 +40,13 @@
           "url": "https://cloud.tencent.com/act/pro/teaStarterExhibition?from=29429&from=29430#2"
         }
       ],
-      "last_check": "2026-04-26T01:58:41.959577"
+      "last_check": "2026-04-26T12:37:42.802162"
     },
     "aliyun": {
-      "hash": "1a4654d4ff50979cb49e74246cf9bcd4",
+      "hash": "9bffc2d349bed5c7645a710014c431af",
       "url": "https://www.aliyun.com/activity",
       "activities": [],
-      "last_check": "2026-04-26T01:58:45.101234"
+      "last_check": "2026-04-26T12:37:47.206145"
     },
     "huawei": {
       "hash": "cd298c0608385d02862bc6bb0997afc3",
@@ -61,10 +61,10 @@
           "provider": "huawei"
         }
       ],
-      "last_check": "2026-04-26T01:58:45.337502"
+      "last_check": "2026-04-26T12:37:47.420276"
     },
     "aws": {
-      "hash": "46504bb1df95eeedc9789ede07fc4ba9",
+      "hash": "ceb6daf8252c65580912d375cec48d88",
       "url": "https://aws.amazon.com/cn/free/",
       "activities": [
         {
@@ -78,20 +78,20 @@
           "url": "https://portal.aws.amazon.com/gp/aws/developer/registration/index.html?&p=free&c=hp2&z=6"
         }
       ],
-      "last_check": "2026-04-26T01:58:45.593332"
+      "last_check": "2026-04-26T12:37:47.561453"
     },
     "pccw": {
-      "hash": "0721947b182c340abd279492ca791a5e",
+      "hash": "1e5840d6e4eaceac4826a63954e585b6",
       "url": "https://www.pccwglobal.com/",
       "activities": [],
-      "last_check": "2026-04-26T01:58:51.372880"
+      "last_check": "2026-04-26T12:37:53.473378"
     },
     "bandwagon": {
       "hash": "390d636bdff8c3fa3a02bcc1d52affb2",
       "url": "https://bwh81.net/",
       "activities": [],
-      "last_check": "2026-04-26T01:58:51.796952"
+      "last_check": "2026-04-26T12:37:53.854664"
     }
   },
-  "last_check": "2026-04-26T01:58:55.956693"
+  "last_check": "2026-04-26T12:37:58.086330"
 }
