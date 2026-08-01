@@ -76,7 +76,7 @@ def format_price_report(prices: list, changes: list = None) -> str:
         sorted_configs = sorted(configs[mem], key=lambda x: x.get("price_monthly", 999999))
         for p in sorted_configs:
             source = p.get("source", "manual")
-            source_emoji = {"api": "🔌", "scraper": "🤖", "manual": "✍️", "fallback": "⚠️"}.get(source, "❓")
+            source_emoji = {"api": "🔌", "scraper": "🤖", "manual": "✍️"}.get(source, "❓")
             lines.append(
                 f"| {p.get('provider_name', '?')} "
                 f"| {p.get('config', '?')} "
@@ -105,7 +105,7 @@ def format_price_report(prices: list, changes: list = None) -> str:
     
     # 来源说明
     lines.append("---")
-    lines.append("图例：🔌 API | 🤖 爬虫 | ✍️ 手动 | ⚠️ 兜底")
+    lines.append("图例：🔌 API | 🤖 爬虫 | ✍️ 手动")
     
     return "\n".join(lines)
 

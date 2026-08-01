@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 云服务器价格 & 活动监控 v2.0 - 真实数据版
-- 价格：每个厂家独立爬虫（API / Playwright / HTTP fallback）
+- 价格：每个厂家独立爬虫（API / Playwright / HTTP）
 - 活动：智能去重（基于内容指纹，不是页面 hash）
 - 通知：Telegram 推送价格对比 + 新活动
 
